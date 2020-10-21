@@ -62,13 +62,13 @@ if __name__ == '__main__':
 
     # params = yaml.safe_load(open('params.yaml'))['evaluate']
 
-    os.makedirs(os.path.join('.', 'app'), exist_ok=True)
-    out_file = os.path.join("app", "metrics.json")
+    os.makedirs(os.path.join('.', 'results'), exist_ok=True)
+    out_file = os.path.join("results", "metrics.json")
 
-    out_file_rmse = os.path.join("app", "train_stats_rmse.json")
-    out_file_rsquare = os.path.join("app", "train_stats_rsquare.json")
-    out_file_mse = os.path.join("app", "train_stats_mse.json")
-    out_file_mae = os.path.join("app", "train_stats_mae.json")
+    out_file_rmse = os.path.join("results", "train_stats_rmse.json")
+    out_file_rsquare = os.path.join("results", "train_stats_rsquare.json")
+    out_file_mse = os.path.join("results", "train_stats_mse.json")
+    out_file_mae = os.path.join("results", "train_stats_mae.json")
 
     ## Fetch Parameters from pipeline
     parser = argparse.ArgumentParser()

@@ -10,8 +10,8 @@ def extract_data_op(train_samples, test_samples):
             '--test_samples', test_samples
         ],
         file_outputs={
-            'out_train': '/app/train.pkl',
-            'out_test': '/app/test.pkl'
+            'out_train': '/app/data/raw/train.pkl',
+            'out_test': '/app/data/raw/test.pkl'
         }
     )
 
@@ -26,8 +26,8 @@ def prepare_op(input_train, input_test, co_relation_threshold):
             '--co_relation_threshold', co_relation_threshold
         ],
         file_outputs={
-            'out_train': '/app/train_prep.pkl',
-            'out_test': '/app/test_prep.pkl'
+            'out_train': '/app/data/prepared/train.pkl',
+            'out_test': '/app/data/prepared/test.pkl'
         }
     )
 
@@ -43,7 +43,7 @@ def train_op(input_train, fit_intercept , normalize, n_jobs, copy_X):
             '--copy_X', copy_X
         ],
         file_outputs={
-            'train_model': '/app/best.pkl'
+            'train_model': '/app/model/Regression_checkpoints/best.pkl'
         }
     )
 
@@ -57,10 +57,10 @@ def evaluate_op(data_path, model_ckpt_dir, metrics):
             '--metrics', metrics
         ],
         file_outputs={
-            'mean_squared_error':'/app/train_stats_mse.json',
-            'root_mean_squared_error': '/app/train_stats_rmse.json',
-            'mean_absolute_error':'/app/train_stats_mae.json',
-            'r_square_error':'app/train_stats_rsquare.json'
+            'mean_squared_error':'/app/results/train_stats_mse.json',
+            'root_mean_squared_error': '/app/results/train_stats_rmse.json',
+            'mean_absolute_error':'/app/results/train_stats_mae.json',
+            'r_square_error':'app/results/train_stats_rsquare.json'
         }
     )
 

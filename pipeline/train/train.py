@@ -33,8 +33,8 @@ if __name__ == '__main__':
     # params = yaml.safe_load(open('params.yaml'))['train']
 
     ## Initialize folders
-    os.makedirs(os.path.join("app"), exist_ok=True)
-    output_model = os.path.join("app", "best.pkl")
+    os.makedirs(os.path.join("model", "Regression_checkpoints"), exist_ok=True)
+    output_model = os.path.join("model", "Regression_checkpoints", "best.pkl")
 
     ## Fetch Parameters from pipeline
     parser = argparse.ArgumentParser()
