@@ -113,7 +113,7 @@ def regression_pipeline(train_samples: int=466, test_samples: int=50 , co_relati
 #kfp.compiler.Compiler().compile(regression_pipeline, 'regression_pipeline.zip')
 
 ## Global Parameters
-params = yaml.safe_load(open('params.yaml'))
+params = yaml.safe_load(open('../params.yaml'))
 extract_params = params['extract']
 prepare_params = params['prepare']
 train_params = params['train']
