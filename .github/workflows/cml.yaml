@@ -40,6 +40,6 @@ jobs:
         run: docker push vyomagg/regression_pipeline_evaluate
 
       - name: Build the Deploy image
-        run: docker build ./pipeline/deploy --tag vyomagg/boston_pipeline_deploy_model
+        run: docker build ./pipeline/deploy --tag vyomagg/regression_pipeline_deploy_model
       - name: Push the Deploy image
-        run: docker push vyomagg/boston_pipeline_deploy_model
+        run: docker push vyomagg/regression_pipeline_deploy_model

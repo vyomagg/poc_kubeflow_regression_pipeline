@@ -6,4 +6,4 @@ RUN pip install -U scikit-learn numpy pandas
 
 COPY deploy.py ./deploy.py
 
-ENTRYPOINT [ "python", "evaluate.py" ]
+ENTRYPOINT [ "python", "deploy.py" ]
