@@ -1,0 +1,45 @@
+# This is a basic workflow to help you get started with Actions
+
+name: regression_train_pipeline
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the develop branch
+on: [push]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  run:
+    # The type of runner that the job will run on
+    runs-on: [ubuntu-latest]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login to DockerHub Registry
+        run: echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+
+      - name: Build the Extract Data image
+        run: docker build ./pipeline/extract_data --tag vyomagg/regression_pipeline_extract_data
+      - name: Push the Extract Data image
+        run: docker push vyomagg/regression_pipeline_extract_data
+
+      - name: Build the Prepare image
+        run: docker build ./pipeline/prepare --tag vyomagg/regression_pipeline_prepare
+      - name: Push the Prepare image
+        run: docker push vyomagg/regression_pipeline_prepare
+
+      - name: Build the Train image
+        run: docker build ./pipeline/train --tag vyomagg/regression_pipeline_train
+      - name: Push the Train image
+        run: docker push vyomagg/regression_pipeline_train
+
+      - name: Build the Evaluate image
+        run: docker build ./pipeline/evaluate --tag vyomagg/regression_pipeline_evaluate
+      - name: Push the Evaluate image
+        run: docker push vyomagg/regression_pipeline_evaluate
+
+      - name: Build the Deploy image
+        run: docker build ./pipeline/deploy --tag vyomagg/boston_pipeline_deploy_model
+      - name: Push the Deploy image
+        run: docker push vyomagg/boston_pipeline_deploy_model
