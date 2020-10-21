@@ -40,8 +40,8 @@ if __name__ == '__main__':
 
     ## Fetch Parameters from pipeline
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input_train')
-    parser.add_argument('--input_test')
+    parser.add_argument('--train_samples')
+    parser.add_argument('--test_samples')
     args = parser.parse_args()
 
     ## Prepare Functions

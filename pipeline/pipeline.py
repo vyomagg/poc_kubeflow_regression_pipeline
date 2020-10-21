@@ -6,8 +6,8 @@ def extract_data_op(train_samples, test_samples):
         name='Extract Data',
         image='vyomagg/regression_pipeline_extract_data:latest',
         arguments=[
-            '--input_train', train_samples,
-            '--input_test', test_samples
+            '--train_samples', train_samples,
+            '--test_samples', test_samples
         ],
         file_outputs={
             'out_train': '/app/train.pkl',
@@ -106,7 +106,14 @@ def regression_pipeline(train_samples = 466, test_samples = 50 , co_relation_thr
     ).after(_evaluate_op)
 
 
-#kfp.compiler.Compiler().compile(regression_pipeline, 'regression_pipeline.zip')
+kfp.compiler.Compiler().compile(regression_pipeline, 'regression_pipeline.zip')
 
-client = kfp.Client()
-client.create_run_from_pipeline_func(regression_pipeline, arguments={}, namespace='kubeflow')
+arguments = { 'train_samples' : 466, 'test_samples' : 50 ,
+            'co_relation_threshold' : .5 , 'fit_intercept' : True ,
+            'normalize' : False, 'n_jobs' : 2 , 'copy_X' : True,
+            'metrics' : ("rsquare","mse","rmse","mae") }
+
+
+#kfp.compiler.Compiler().compile(regression_pipeline, 'multiplication_pipeline.zip')
+#client = kfp.Client()
+#client.create_run_from_pipeline_func(regression_pipeline, arguments= arguments, namespace='kubeflow')
