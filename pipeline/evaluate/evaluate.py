@@ -31,11 +31,11 @@ def model_evalute(test_df, regr_model, metrics):
 
     # Error
     for i in metrics:
-        if i == "mse" :
+        if i == "mse":
             # L2 Loss (mse)
             mse = mean_squared_error(Y1, Yout1)
             print("Mean square error for simple linear regression is", mse)
-            save_results({"mse":mse},out_file_mse)
+            save_results({"mse":mse}, out_file_mse)
 
         elif i == "mae":
             # l1 Loss (Mae)
@@ -62,7 +62,7 @@ if __name__ == '__main__':
 
     # params = yaml.safe_load(open('params.yaml'))['evaluate']
 
-    os.makedirs(os.path.join('.', 'results'), exist_ok=True)
+    os.makedirs(os.path.join('results'), exist_ok=True)
     out_file = os.path.join("results", "metrics.json")
 
     out_file_rmse = os.path.join("results", "train_stats_rmse.json")
