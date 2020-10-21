@@ -1,7 +1,7 @@
 import pandas as pd
 import pickle
 import os
-import yaml
+#import yaml
 import argparse
 import json
 from sklearn.metrics import mean_squared_error
@@ -60,7 +60,7 @@ def model_evalute(test_df, regr_model, metrics):
 if __name__ == '__main__':
     print("Starting evaluation stage...")
 
-    params = yaml.safe_load(open('params.yaml'))['evaluate']
+    # params = yaml.safe_load(open('params.yaml'))['evaluate']
 
     os.makedirs(os.path.join('.', 'app'), exist_ok=True)
     out_file = os.path.join("app", "metrics.json")
@@ -74,12 +74,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--data_path')
     parser.add_argument('--model_ckpt_dir')
+    parser.add_argument('--metrics')
     args = parser.parse_args()
 
     ## Evaluate Functions
     test_df = load_data(args.data_path)
     regr_model = load_model(args.model_ckpt_dir)
-    model_evalute(test_df, regr_model, params['metrics'])
+    model_evalute(test_df, regr_model, args.metrics)
 
 
     print("Evaluation stage completed...")

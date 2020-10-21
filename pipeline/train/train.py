@@ -2,7 +2,7 @@ import pandas as pd
 import argparse
 import pickle
 import os
-import yaml
+# import yaml
 from sklearn.linear_model import LinearRegression
 
 def load_data(pkl_filepath):
@@ -30,7 +30,7 @@ def linear_regr_model(train_df,fit_intercept,normalize,n_jobs,copy_X):
 if __name__ == '__main__':
     print("Starting the training stage...")
 
-    params = yaml.safe_load(open('params.yaml'))['train']
+    # params = yaml.safe_load(open('params.yaml'))['train']
 
     ## Initialize folders
     os.makedirs(os.path.join("app"), exist_ok=True)
@@ -39,10 +39,14 @@ if __name__ == '__main__':
     ## Fetch Parameters from pipeline
     parser = argparse.ArgumentParser()
     parser.add_argument('--input_train')
+    parser.add_argument('--fit_intercept')
+    parser.add_argument('--normalize')
+    parser.add_argument('--n_jobs')
+    parser.add_argument('--copy_X')
     args = parser.parse_args()
 
     ## Train Functions
     train_df = load_data(args.input_train)
-    linear_regr_model(train_df,params['fit_intercept'],params['normalize'],params['n_jobs'],params['copy_X'])
+    linear_regr_model(train_df, args.fit_intercept , args.normalize, args.n_jobs, args.copy_X)
 
     print("Training stage completed...")

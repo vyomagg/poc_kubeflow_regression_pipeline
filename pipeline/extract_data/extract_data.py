@@ -2,7 +2,8 @@
 
 import os
 import pandas as pd
-import yaml
+#import yaml
+import argparse
 from sklearn.datasets import load_boston
 from sklearn.model_selection import train_test_split
 
@@ -30,7 +31,7 @@ def save_datasets(train_df, test_df):
 if __name__ == '__main__':
     print("Starting the prepare stage...")
 
-    params = yaml.safe_load(open('params.yaml'))['extract']
+    #params = yaml.safe_load(open('params.yaml'))['extract']
 
     ## Initialize folders
     os.makedirs(os.path.join("app"), exist_ok=True)
@@ -38,9 +39,13 @@ if __name__ == '__main__':
     output_test = os.path.join('app', 'test.pkl')
 
     ## Fetch Parameters from pipeline
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input_train')
+    parser.add_argument('--input_test')
+    args = parser.parse_args()
 
     ## Prepare Functions
-    train_df, test_df = fetch_datasets(params['train_samples'], params['test_samples'])
+    train_df, test_df = fetch_datasets(args.train_samples, args.test_samples)
     save_datasets(train_df, test_df)
 
     print('Prepare stage completed successfylly...')

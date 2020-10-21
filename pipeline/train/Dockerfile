@@ -6,6 +6,4 @@ RUN pip install -U scikit-learn numpy pandas
 
 COPY train.py ./train.py
 
-COPY ../../params.yaml  ./params.yaml
-
 ENTRYPOINT [ "python", "train.py" ]

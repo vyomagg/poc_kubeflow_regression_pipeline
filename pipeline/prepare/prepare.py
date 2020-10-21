@@ -2,7 +2,7 @@ import os
 import argparse
 from scipy import stats
 import pandas as pd
-import yaml
+#import yaml
 
 def read_dataset(input_path):
     df = pd.read_pickle(input_path)
@@ -34,7 +34,7 @@ def save_as_pkl(train_df,test_df):
 if __name__ == '__main__':
     print("Starting the prepare stage...")
 
-    params = yaml.safe_load(open('params.yaml'))['prepare']
+    #params = yaml.safe_load(open('params.yaml'))['prepare']
 
     ## Initialize folders
     os.makedirs(os.path.join("app"), exist_ok=True)
@@ -45,11 +45,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--input_train')
     parser.add_argument('--input_test')
+    parser.add_argument('--co_relation_threshold')
     args = parser.parse_args()
 
     ## Prepare Functions
     train_df = read_dataset(args.input_train)
     test_df = read_dataset(args.input_test)
-    feature_selection(train_df, test_df, params['co_relation_threshold'])
+    feature_selection(train_df, test_df, args.co_relation_threshold)
 
     print('Prepare stage completed successfylly...')
