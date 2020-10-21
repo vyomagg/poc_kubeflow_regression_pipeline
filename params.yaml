@@ -14,4 +14,4 @@ train:
 evaluate:
   # All metrics are available
   # "rsquare","mse","rmse","mae"
-  metrics: ["rsquare","mse","rmse","mae"]
+  metrics: "rsquare, mse, rmse, mae"
