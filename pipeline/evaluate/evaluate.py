@@ -80,7 +80,6 @@ if __name__ == '__main__':
     ## Evaluate Functions
     test_df = load_data(args.data_path)
     regr_model = load_model(args.model_ckpt_dir)
-    model_evalute(test_df, regr_model, args.metrics)
-
+    model_evalute(test_df, regr_model, list(map(str, args.metrics.split(', '))))
 
     print("Evaluation stage completed...")

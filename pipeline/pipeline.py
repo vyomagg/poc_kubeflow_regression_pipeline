@@ -79,8 +79,8 @@ def deploy_model_op(model):
     name='Regression Kubeflow Pipeline',
     description='An example pipeline that trains and logs a regression model.'
 )
-def regression_pipeline(train_samples = 466, test_samples = 50 , co_relation_threshold = .5 , fit_intercept = True ,
-                        normalize = False, n_jobs = 2 , copy_X = True, metrics = ("rsquare","mse","rmse","mae") ) :
+def regression_pipeline(train_samples: int=466, test_samples: int=50 , co_relation_threshold: float=.5 , fit_intercept: bool=True ,
+                        normalize: bool=False, n_jobs: int=2 , copy_X: bool=True, metrics: str="rsquare, mse, rmse, mae" ) :
 
     _extract_op = extract_data_op(train_samples, test_samples)
 

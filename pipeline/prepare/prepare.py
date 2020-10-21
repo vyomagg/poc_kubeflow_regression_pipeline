@@ -51,6 +51,6 @@ if __name__ == '__main__':
     ## Prepare Functions
     train_df = read_dataset(args.input_train)
     test_df = read_dataset(args.input_test)
-    feature_selection(train_df, test_df, args.co_relation_threshold)
+    feature_selection(train_df, test_df, float(args.co_relation_threshold))
 
     print('Prepare stage completed successfylly...')

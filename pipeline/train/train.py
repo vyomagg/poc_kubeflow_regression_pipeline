@@ -47,6 +47,6 @@ if __name__ == '__main__':
 
     ## Train Functions
     train_df = load_data(args.input_train)
-    linear_regr_model(train_df, args.fit_intercept , args.normalize, args.n_jobs, args.copy_X)
+    linear_regr_model(train_df, bool(args.fit_intercept) , bool(args.normalize), int(args.n_jobs), bool(args.copy_X))
 
     print("Training stage completed...")

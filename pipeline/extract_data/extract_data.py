@@ -45,7 +45,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     ## Prepare Functions
-    train_df, test_df = fetch_datasets(args.train_samples, args.test_samples)
+    train_df, test_df = fetch_datasets(int(args.train_samples), int(args.test_samples))
     save_datasets(train_df, test_df)
 
     print('Prepare stage completed successfylly...')
