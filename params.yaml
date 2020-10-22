@@ -1,9 +1,9 @@
 extract:
-  test_samples: 50
-  train_samples: 466
+  test_samples: 200
+  train_samples: 316
 
 prepare:
-  co_relation_threshold: .5
+  co_relation_threshold: .4
 
 train:
   fit_intercept: True
